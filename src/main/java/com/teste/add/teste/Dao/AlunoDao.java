@@ -1,6 +1,5 @@
 package com.teste.add.teste.Dao;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,25 +40,32 @@ public class AlunoDao implements GenericDao<Aluno> {
 	@Override
 	public Optional<Aluno> getById(long id) {
 		// TODO Auto-generated method stub
-		return Optional.ofNullable(alunoRepository.getById(id));
+		Optional <Aluno> aluno =alunoRepository.findById(id);
+		return aluno;   
 	};
 
 	@Override
-	public List<Aluno> getAll() {
+	public List<Aluno> getAll() {	
 
 		return alunoRepository.findAll();
 
 	}
 
 	@Override
-	public void update(Aluno t, String[] params) {
-		// TODO Auto-generated method stub
+	public void update(Integer id, Aluno aluno, String[] params) {
+		Aluno antigo;
+		antigo = alunoRepository.findById((long)id).get();
+		antigo.setNome(aluno.getNome());
+		antigo.setDataDeNascimento(aluno.getDataDeNascimento());
+		alunoRepository.save(antigo);
+		
+		
 
 	}
 
 	@Override
 	public void delete(Aluno t) {
-		// TODO Auto-generated method stub
+		alunoRepository.deleteById((long) t.getId());
 
 	}
 

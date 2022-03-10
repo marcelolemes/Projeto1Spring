@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.teste.add.teste.Model.Aluno;
+
 public interface GenericDao<T>{
 
 	public void create(T t);
@@ -13,7 +15,9 @@ public interface GenericDao<T>{
 
 	List<T> getAll();
 
-	void update(T t, String[] params);
+	void update(Integer i, T t, String[] params);
 
 	void delete(T t);
+
+	void update(Integer id, Aluno aluno, String[] params);
 }
